@@ -45,4 +45,7 @@ func main() {
 
 func createTask(c *fiber.Ctx) error {
 
+	return c.JSON(fiber.Map{
+		"status": "201",
+	})
 }
