@@ -189,7 +189,7 @@ func AddArticle(c *fiber.Ctx) error {
 			"err": err.Error(),
 		})
 	}
-
+	
 	SqlStatement := `INSERT INTO article (name, content, tags, published_at) VALUES($1, $2, $3, $4)`
 	tag, err := dbpools.Exec(c.Context(), SqlStatement, article.Name, article.Content, article.Tags, article.Published_date)
 
@@ -203,7 +203,7 @@ func AddArticle(c *fiber.Ctx) error {
 	if tag.RowsAffected() == 0 {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"msg": "failed",
-			"err": errors.New("failed to add article"),
+			"err": errors.New("failed to add article").Error(),
 		})
 	}
 
